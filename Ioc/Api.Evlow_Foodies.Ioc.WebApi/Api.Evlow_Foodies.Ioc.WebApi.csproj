@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Buisness\Api.Evlow_Foodies.Buisness.Service.Contract\Api.Evlow_Foodies.Buisness.Service.Contract.csproj" />
+    <ProjectReference Include="..\..\Buisness\Api.Evlow_Foodies.Buisness.Service\Api.Evlow_Foodies.Buisness.Service.csproj" />
+    <ProjectReference Include="..\..\Datas\Api.Evlow_foodies.Datas.Context\Api.Evlow_Foodies.Datas.Context.csproj" />
+    <ProjectReference Include="..\..\Datas\Api.Evlow_Foodies.Datas.Repository.Contract\Api.Evlow_Foodies.Datas.Repository.Contract.csproj" />
+    <ProjectReference Include="..\..\Datas\Api.Evlow_Foodies.Datas.Repository\Api.Evlow_Foodies.Datas.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

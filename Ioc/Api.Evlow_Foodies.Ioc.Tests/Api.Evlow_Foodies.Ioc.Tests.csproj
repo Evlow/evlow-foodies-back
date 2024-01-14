@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.16" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+    <ProjectReference Include="..\..\Datas\Api.Evlow_Foodies.Datas.Context.Contract\Api.Evlow_Foodies.Datas.Context.Contract.csproj" />
+    <ProjectReference Include="..\..\Datas\Api.Evlow_foodies.Datas.Context\Api.Evlow_Foodies.Datas.Context.csproj" />
+    <ProjectReference Include="..\..\Datas\Api.Evlow_Foodies.Datas.Entities\Api.Evlow_Foodies.Datas.Entities.csproj" />
+    <ProjectReference Include="..\Api.Evlow_Foodies.Ioc.WebApi\Api.Evlow_Foodies.Ioc.WebApi.csproj" />
+  </ItemGroup>
+
+</Project>

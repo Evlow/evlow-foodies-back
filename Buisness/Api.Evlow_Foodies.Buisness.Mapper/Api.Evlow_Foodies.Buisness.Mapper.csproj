@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Datas\Api.Evlow_Foodies.Datas.Entities\Api.Evlow_Foodies.Datas.Entities.csproj" />
+    <ProjectReference Include="..\Api.Evlow_Foodies.Buisness.DTO\Api.Evlow_Foodies.Buisness.DTO.csproj" />
+  </ItemGroup>
+
+</Project>
