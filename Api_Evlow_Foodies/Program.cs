@@ -1,4 +1,5 @@
 using Api.Evlow_Foodies.Ioc.WebApi;
+using auth.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.ConfigureInjectionDependencyRepository();
 builder.Services.ConfigureInjectionDependencyService();
 
 // Add services to the container.
+builder.Services.AddScoped<JwtService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddControllers();

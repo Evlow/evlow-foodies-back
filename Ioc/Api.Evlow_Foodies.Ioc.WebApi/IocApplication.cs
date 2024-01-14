@@ -8,11 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Api.Evlow_Foodies.Ioc.WebApi
 {
@@ -37,12 +32,6 @@ namespace Api.Evlow_Foodies.Ioc.WebApi
             services.AddScoped<IRecipeIngredientRepository, RecipeIngredientRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
 
-
-
-
-
-
-
             return services;
         }
 
@@ -66,6 +55,8 @@ namespace Api.Evlow_Foodies.Ioc.WebApi
             services.AddScoped<IPreparationService, PreparationService>();
             services.AddScoped<IRecipeIngredientService, RecipeIngredientService>();
             services.AddScoped<IUserService, UserService>();
+
+
 
 
 
