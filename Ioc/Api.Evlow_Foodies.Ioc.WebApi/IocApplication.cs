@@ -1,6 +1,7 @@
 ﻿using Api.Evlow_Foodies.Buisness.Service;
 using Api.Evlow_Foodies.Buisness.Service.Contract;
 using Api.Evlow_Foodies.Datas.Context.Contract;
+using Api.Evlow_Foodies.Datas.Context;
 using Api.Evlow_Foodies.Datas.Entities;
 using Api.Evlow_Foodies.Datas.Repository;
 using Api.Evlow_Foodies.Datas.Repository.Contract;
@@ -75,7 +76,7 @@ namespace Api.Evlow_Foodies.Ioc.WebApi
         {
             var connectionString = configuration.GetConnectionString("BddConnection");
 
-            services.AddDbContext<IEvlow_FoodiesDBContext, Evlow_Foodies_SimplonDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
+            services.AddDbContext<IEvlow_FoodiesDBContext, Evlow_FoodiesDBContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
                 .LogTo(Console.WriteLine, LogLevel.Information)
                 .EnableSensitiveDataLogging()
                 .EnableDetailedErrors());

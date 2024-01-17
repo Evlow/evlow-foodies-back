@@ -7,13 +7,13 @@ using Api.Evlow_Foodies.Datas.Context.Contract;
 
 namespace Api.Evlow_Foodies.Datas.Entities
 {
-    public partial class Evlow_Foodies_SimplonDbContext : DbContext, IEvlow_FoodiesDBContext
+    public partial class Evlow_FoodiesDBContext : DbContext, IEvlow_FoodiesDBContext
     {
-        public Evlow_Foodies_SimplonDbContext()
+        public Evlow_FoodiesDBContext()
         {
         }
 
-        public Evlow_Foodies_SimplonDbContext(DbContextOptions<Evlow_Foodies_SimplonDbContext> options)
+        public Evlow_FoodiesDBContext(DbContextOptions<Evlow_FoodiesDBContext> options)
             : base(options)
         {
         }
@@ -33,7 +33,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseMySql("server=localhost;database=evlow_foodies_simplon;port=3306;user id=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
+                optionsBuilder.UseMySql("server=localhost;database=evlow_foodies_simplon;port=3306;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
             }
         }
 
@@ -69,9 +69,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
 
                 entity.HasIndex(e => e.UserId, "user_id");
 
-                entity.Property(e => e.CommentId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("comment_id");
+                entity.Property(e => e.CommentId).HasColumnName("comment_id");
 
                 entity.Property(e => e.CommentContent)
                     .HasColumnType("text")
@@ -114,9 +112,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
 
                 entity.HasIndex(e => e.UserId, "user_id");
 
-                entity.Property(e => e.FavorisId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("favoris_id");
+                entity.Property(e => e.FavorisId).HasColumnName("favoris_id");
 
                 entity.Property(e => e.RecipeId).HasColumnName("recipe_id");
 
@@ -140,9 +136,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
                 entity.HasCharSet("utf8mb3")
                     .UseCollation("utf8mb3_general_ci");
 
-                entity.Property(e => e.IngredientId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ingredient_id");
+                entity.Property(e => e.IngredientId).HasColumnName("ingredient_id");
 
                 entity.Property(e => e.IngredientName)
                     .HasMaxLength(255)
@@ -156,7 +150,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
                 entity.HasCharSet("utf8mb3")
                     .UseCollation("utf8mb3_general_ci");
 
-                entity.HasIndex(e => e.RecipeId, "recipe_id");
+                entity.HasIndex(e => e.RecipeId, "preparation_ibfk_1");
 
                 entity.Property(e => e.PreparationId).HasColumnName("preparation_id");
 
@@ -186,9 +180,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
 
                 entity.HasIndex(e => e.UserId, "user_id");
 
-                entity.Property(e => e.RecipeId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("recipe_id");
+                entity.Property(e => e.RecipeId).HasColumnName("recipe_id");
 
                 entity.Property(e => e.CategoryId).HasColumnName("category_id");
 
@@ -223,6 +215,10 @@ namespace Api.Evlow_Foodies.Datas.Entities
 
             modelBuilder.Entity<RecipeIngredient>(entity =>
             {
+                entity.HasKey(e => new { e.RecipeId, e.IngredientId })
+                    .HasName("PRIMARY")
+                    .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
+
                 entity.ToTable("recipe_ingredient");
 
                 entity.HasCharSet("utf8mb3")
@@ -230,15 +226,11 @@ namespace Api.Evlow_Foodies.Datas.Entities
 
                 entity.HasIndex(e => e.IngredientId, "ingredient_id");
 
-                entity.HasIndex(e => e.RecipeId, "recipe_id");
-
                 entity.HasIndex(e => e.UnityId, "unity_id");
 
-                entity.Property(e => e.RecipeIngredientId).HasColumnName("recipe_ingredient_id");
+                entity.Property(e => e.RecipeId).HasColumnName("recipe_id");
 
                 entity.Property(e => e.IngredientId).HasColumnName("ingredient_id");
-
-                entity.Property(e => e.RecipeId).HasColumnName("recipe_id");
 
                 entity.Property(e => e.RecipeIngredientQuantity)
                     .HasPrecision(10, 2)
@@ -250,13 +242,13 @@ namespace Api.Evlow_Foodies.Datas.Entities
                     .WithMany(p => p.RecipeIngredients)
                     .HasForeignKey(d => d.IngredientId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("recipe_ingredient_ibfk_5");
+                    .HasConstraintName("recipe_ingredient_ibfk_2");
 
                 entity.HasOne(d => d.Recipe)
                     .WithMany(p => p.RecipeIngredients)
                     .HasForeignKey(d => d.RecipeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("recipe_ingredient_ibfk_4");
+                    .HasConstraintName("recipe_ingredient_ibfk_1");
 
                 entity.HasOne(d => d.Unity)
                     .WithMany(p => p.RecipeIngredients)
@@ -271,9 +263,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
                 entity.HasCharSet("utf8mb3")
                     .UseCollation("utf8mb3_general_ci");
 
-                entity.Property(e => e.UnityId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("unity_id");
+                entity.Property(e => e.UnityId).HasColumnName("unity_id");
 
                 entity.Property(e => e.UnityName)
                     .HasMaxLength(255)
@@ -287,9 +277,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
                 entity.HasCharSet("utf8mb3")
                     .UseCollation("utf8mb3_general_ci");
 
-                entity.Property(e => e.UserId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("user_id");
+                entity.Property(e => e.UserId).HasColumnName("user_id");
 
                 entity.Property(e => e.UserEmail)
                     .HasMaxLength(255)

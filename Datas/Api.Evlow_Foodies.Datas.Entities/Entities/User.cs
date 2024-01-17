@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace Api.Evlow_Foodies.Datas.Entities.Entities
 {
@@ -18,7 +17,8 @@ namespace Api.Evlow_Foodies.Datas.Entities.Entities
         public string? UserLastName { get; set; }
         public string? UserPseudo { get; set; }
         public string? UserEmail { get; set; }
-        [JsonIgnore] public string UserPassword { get; set; }
+        public string? UserPassword { get; set; }
+
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Favori> Favoris { get; set; }
         public virtual ICollection<Recipe> Recipes { get; set; }
