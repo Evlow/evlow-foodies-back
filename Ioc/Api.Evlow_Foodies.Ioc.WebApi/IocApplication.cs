@@ -57,14 +57,6 @@ namespace Api.Evlow_Foodies.Ioc.WebApi
             services.AddScoped<IRecipeIngredientService, RecipeIngredientService>();
             services.AddScoped<IUserService, UserService>();
 
-
-
-
-
-
-
-
-
             return services;
         }
 

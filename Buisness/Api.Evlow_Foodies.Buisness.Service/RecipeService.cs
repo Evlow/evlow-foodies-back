@@ -31,7 +31,7 @@ namespace Api.Evlow_Foodies.Buisness.Service
         /// Cette méthode permet de récupérer les listes des unités de mesure.
         /// </summary>
         /// <returns></returns>
-        public async Task<List<RecipeDTO>> GetRecipeAsync()
+        public async Task<List<RecipeDTO>> GetRecipesAsync()
         {
             var recipes = await _recipeRepository.GetRecipesAsync().ConfigureAwait(false);
             List<RecipeDTO> listRecipeDTO = new List<RecipeDTO>(recipes.Count);
@@ -64,9 +64,9 @@ namespace Api.Evlow_Foodies.Buisness.Service
         {
             var isExiste = await CheckRecipeTitleExisteAsync(recipe.RecipeTitle).ConfigureAwait(false);
             if (isExiste)
-                throw new Exception("Il existe déjà une unité de mesure du même nom !!");
+                throw new Exception("Il existe déjà une recette du même nom !!");
 
-            var recipeToAdd = RecipeMapper.TransformDTOToEntity(recipe);
+            var recipeToAdd = _mapper.Map<Recipe>(recipe);
 
             var recipeAdded = await _recipeRepository.CreateRecipeAsync(recipeToAdd).ConfigureAwait(false);
 
@@ -88,11 +88,11 @@ namespace Api.Evlow_Foodies.Buisness.Service
         {
             var isExiste = await CheckRecipeTitleExisteAsync(recipe.RecipeTitle).ConfigureAwait(false);
             if (isExiste)
-                throw new Exception("Il existe déjà une unité de mesure du même nom !!");
+                throw new Exception("Il existe déjà une recette du même nom !!!");
 
             var recipeGet = await _recipeRepository.GetRecipeByIdAsync(recipeId).ConfigureAwait(false);
             if (recipeGet == null)
-                throw new Exception($"Il n'existe aucune unité de mesure avec cet identifiant : {recipeId}");
+                throw new Exception($"Il n'existe aucune recette avec cet identifiant : {recipeId}");
 
             recipeGet.RecipeTitle = recipe.RecipeTitle;
 
@@ -132,12 +132,25 @@ namespace Api.Evlow_Foodies.Buisness.Service
             return recipeGet != null;
         }
 
-        public async Task<List<RecipeDTO>> GetSaltRecipesByCategoryIdAsync(int categoryId)
+        public async Task<List<RecipeDTO>> GetRecipesByCategoryIdAsync(int categoryId)
         {
-            var recipesByCategory = await _recipeRepository.GetSaltRecipesByCategoryIdAsync(categoryId).ConfigureAwait(false);
+            var recipesByCategory = await _recipeRepository.GetRecipesByCategoryIdAsync(categoryId).ConfigureAwait(false);
             List<RecipeDTO> listRecipeDTO = new List<RecipeDTO>(recipesByCategory.Count);
 
             foreach (var recipe in recipesByCategory)
+            {
+                listRecipeDTO.Add(_mapper.Map<RecipeDTO>(recipe));
+            }
+
+            return listRecipeDTO;
+        }
+
+        public async Task<List<RecipeDTO>> GetRecipesByUserIdAsync(int userId)
+        {
+            var recipesByUser= await _recipeRepository.GetRecipesByUserIdAsync(userId).ConfigureAwait(false);
+            List<RecipeDTO> listRecipeDTO = new List<RecipeDTO>(recipesByUser.Count);
+
+            foreach (var recipe in recipesByUser)
             {
                 listRecipeDTO.Add(_mapper.Map<RecipeDTO>(recipe));
             }

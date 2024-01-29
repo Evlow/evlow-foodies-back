@@ -13,6 +13,7 @@ namespace Api_Evlow_Foodies.Controllers
     {
         private readonly IUserRepository _userRepository;
         private readonly JwtService _jwtService;
+        private readonly ILogger _logger;
         public AuthController(IUserRepository repository, JwtService jwtService)
         {
             _userRepository = repository;
@@ -54,10 +55,12 @@ namespace Api_Evlow_Foodies.Controllers
             {
                 HttpOnly = true
             });
-
+            Response.Cookies.Append("userId", user.ToString());
             return Ok(new
             {
-                message = "success"
+                message = "success",
+                Token = jwt,
+                User = user,
             });
         }
 

@@ -51,6 +51,8 @@ namespace Api.Evlow_Foodies.Datas.Repository.Contract
         /// <returns></returns>
         Task<Recipe> DeleteRecipeAsync(Recipe recipe);
 
-        Task<List<Recipe>> GetSaltRecipesByCategoryIdAsync(int categoryId);
+        Task<List<Recipe>> GetRecipesByCategoryIdAsync(int categoryId);
+        Task<List<Recipe>> GetRecipesByUserIdAsync(int userId);
+
     }
 }

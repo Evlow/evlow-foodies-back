@@ -95,18 +95,22 @@ namespace Api.Evlow_Foodies.Datas.Repository
             return elementDeleted.Entity;
         }
 
-        public async Task<List<Recipe>> GetSaltRecipesByCategoryIdAsync(int categoryId)
+        public async Task<List<Recipe>> GetRecipesByCategoryIdAsync(int categoryId)
         {
-            // Implémentez la logique pour récupérer les recettes salées avec la catégorieId égale à 1
-            // Utilisez votre ORM ou le code ADO.NET selon votre configuration
-            // Assurez-vous d'adapter cela à votre modèle de données réel et à votre ORM
-
-            // Exemple fictif (utilisez votre propre logique)
-            var saltRecipes = await _dBContext.Recipes
+            var recipesByCategoryId = await _dBContext.Recipes
            .Where(r => r.CategoryId == categoryId)
            .ToListAsync().ConfigureAwait(false);
 
-            return saltRecipes;
+            return recipesByCategoryId;
+        }
+
+        public async Task<List<Recipe>> GetRecipesByUserIdAsync(int userId)
+        {
+            var recipesByUserId = await _dBContext.Recipes
+           .Where(r => r.UserId == userId)
+           .ToListAsync().ConfigureAwait(false);
+
+            return recipesByUserId;
         }
     }
 }

@@ -56,6 +56,12 @@ namespace Api.Evlow_Foodies.Datas.Repository
                 .ConfigureAwait(false);
         }
 
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            return await _dBContext.Users.FirstOrDefaultAsync(user => user.UserEmail == email)
+                .ConfigureAwait(false);
+        }
+
 
         /// <summary>
         /// Cette méthode permet de créer une unité de mesure.

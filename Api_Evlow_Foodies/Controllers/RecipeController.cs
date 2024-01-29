@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api_Evlow_Foodies.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class RecipeController : ControllerBase
     {
@@ -32,7 +32,7 @@ namespace Api_Evlow_Foodies.Controllers
         [ProducesResponseType(typeof(List<RecipeDTO>), 200)]
         public async Task<ActionResult> GetRecipesAsync()
         {
-            var recipes = await _recipeService.GetRecipeAsync().ConfigureAwait(false);
+            var recipes = await _recipeService.GetRecipesAsync().ConfigureAwait(false);
 
             return Ok(recipes);
         }
@@ -44,7 +44,7 @@ namespace Api_Evlow_Foodies.Controllers
         /// <returns></returns>
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(RecipeDTO), 200)]
-        public async Task<ActionResult> ReccipeId(int id)
+        public async Task<ActionResult> RecipeId(int id)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace Api_Evlow_Foodies.Controllers
         /// <returns></returns>
         [HttpPost]
         [ProducesResponseType(typeof(RecipeDTO), 200)]
-        public async Task<ActionResult> CreateUnityAsync([FromBody] RecipeDTO recipe)
+        public async Task<ActionResult> CreateRecipeAsync([FromBody] RecipeDTO recipe)
         {
             if (string.IsNullOrWhiteSpace(recipe.RecipeTitle))
             {
@@ -150,13 +150,13 @@ namespace Api_Evlow_Foodies.Controllers
             }
 
         }
-        [HttpGet("Category/{categoryId}")]
+        [HttpGet("{categoryId}")]
         [ProducesResponseType(typeof(List<RecipeDTO>), 200)]
-        public async Task<ActionResult> GetSaltRecipesByCategoryIdAsync(int categoryId)
+        public async Task<ActionResult> GetRecipesByCategoryIdAsync(int categoryId)
         {
             try
             {
-                var recipesByCategory = await _recipeService.GetSaltRecipesByCategoryIdAsync(categoryId).ConfigureAwait(false);
+                var recipesByCategory = await _recipeService.GetRecipesByCategoryIdAsync(categoryId).ConfigureAwait(false);
 
                 return Ok(recipesByCategory);
             }
@@ -167,6 +167,26 @@ namespace Api_Evlow_Foodies.Controllers
                     Error = e.Message,
                 });
             }
+
+        }
+        [HttpGet("{userId}")]
+        [ProducesResponseType(typeof(List<RecipeDTO>), 200)]
+        public async Task<ActionResult> GetRecipesByUserIdAsync(int userId)
+        {
+            try
+            {
+                var recipesByUser = await _recipeService.GetRecipesByUserIdAsync(userId).ConfigureAwait(false);
+
+                return Ok(recipesByUser);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new
+                {
+                    Error = e.Message,
+                });
+            }
+
         }
     }
 }

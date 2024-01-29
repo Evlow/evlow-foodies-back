@@ -9,8 +9,8 @@ namespace Api.Evlow_Foodies.Buisness.DTO
     public class RecipeDTO
     {
         public int RecipeId { get; set; }
-        public int? UserId { get; set; }
-        public int? CategoryId { get; set; }
+        public int UserId { get; set; }
+        public int CategoryId { get; set; }
         public string? RecipeTitle { get; set; }
         public string? RecipePicture { get; set; }
         public DateTime? RecipeCreatedAt { get; set; } // Changer DateOnly en DateTime

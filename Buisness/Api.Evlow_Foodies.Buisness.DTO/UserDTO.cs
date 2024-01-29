@@ -16,8 +16,14 @@ namespace Api.Evlow_Foodies.Buisness.DTO
         public string? UserEmail { get; set; }
         public string? UserPassword { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Favori> Favoris { get; set; }
+        public IEnumerable<Recipe> GetRecipesAsync()
+        {
+            // Filtrer les recettes en fonction de l'ID de l'utilisateur
+            return Recipes.Where(recipe => recipe.UserId == UserId);
+        }
+
+        //public virtual ICollection<Comment> Comments { get; set; }
+        //public virtual ICollection<Favori> Favoris { get; set; }
         public virtual ICollection<Recipe> Recipes { get; set; }
     }
 }

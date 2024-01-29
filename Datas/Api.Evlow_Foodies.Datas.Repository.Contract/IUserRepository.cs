@@ -28,6 +28,7 @@ namespace Api.Evlow_Foodies.Datas.Repository.Contract
         /// <param name="name">le nom de l'unité de mesure.</param>
         /// <returns></returns>
         Task<User> GetUserByPseudoAsync(string pseudo);
+        Task<User> GetUserByEmailAsync(string email);
 
         /// <summary>
         /// Cette méthode permet de créer une unité de mesure.

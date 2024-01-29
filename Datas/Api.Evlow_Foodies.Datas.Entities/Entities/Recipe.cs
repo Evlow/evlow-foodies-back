@@ -14,8 +14,8 @@ namespace Api.Evlow_Foodies.Datas.Entities.Entities
         }
 
         public int RecipeId { get; set; }
-        public int? UserId { get; set; }
-        public int? CategoryId { get; set; }
+        public int UserId { get; set; }
+        public int CategoryId { get; set; }
         public string? RecipeTitle { get; set; }
         public string? RecipePicture { get; set; }
         public DateTime? RecipeCreatedAt { get; set; }

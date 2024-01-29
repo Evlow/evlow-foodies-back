@@ -14,7 +14,7 @@ namespace Api.Evlow_Foodies.Buisness.Service.Contract
         /// Cette méthode permet de récupérer les listes des unités de mesure.
         /// </summary>
         /// <returns></returns>
-        Task<List<RecipeDTO>> GetRecipeAsync();
+        Task<List<RecipeDTO>> GetRecipesAsync();
 
         /// <summary>
         /// Cette méthode permet de récupérer un id d'une unité de mesure.
@@ -50,7 +50,8 @@ namespace Api.Evlow_Foodies.Buisness.Service.Contract
         /// <returns></returns>
         /// <exception cref="System.Exception">Il n'existe aucune unité de mesure avec cet identifiant : {idUnite}</exception>
         Task<RecipeDTO> DeleteRecipeAsync(int recipeId);
-        Task<List<RecipeDTO>> GetSaltRecipesByCategoryIdAsync(int categoryId);
+        Task<List<RecipeDTO>> GetRecipesByCategoryIdAsync(int categoryId);
+        Task<List<RecipeDTO>> GetRecipesByUserIdAsync(int userId);
 
     }
 }
