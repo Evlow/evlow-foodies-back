@@ -8,9 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.10.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.10.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Api.Evlow_Foodies.Common\Api.Evlow_Foodies.Common.csproj" />
     <ProjectReference Include="..\..\Datas\Api.Evlow_Foodies.Datas.Repository.Contract\Api.Evlow_Foodies.Datas.Repository.Contract.csproj" />
     <ProjectReference Include="..\..\Datas\Api.Evlow_Foodies.Datas.Repository\Api.Evlow_Foodies.Datas.Repository.csproj" />
     <ProjectReference Include="..\Api.Evlow_Foodies.Buisness.Mapper\Api.Evlow_Foodies.Buisness.Mapper.csproj" />

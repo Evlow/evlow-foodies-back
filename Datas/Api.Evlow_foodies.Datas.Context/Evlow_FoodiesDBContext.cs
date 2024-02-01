@@ -32,7 +32,6 @@ namespace Api.Evlow_Foodies.Datas.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseMySql("server=localhost;database=evlow_foodies_simplon;port=3306;user=root", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.31-mysql"));
             }
         }
@@ -54,7 +53,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
                     .HasColumnName("category_id");
 
                 entity.Property(e => e.CategoryName)
-                    .HasMaxLength(255)
+                    .HasMaxLength(50)
                     .HasColumnName("category_name");
             });
 
@@ -80,7 +79,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
                     .HasColumnName("comment_stars");
 
                 entity.Property(e => e.CommentTitle)
-                    .HasMaxLength(255)
+                    .HasMaxLength(50)
                     .HasColumnName("comment_title");
 
                 entity.Property(e => e.RecipeId).HasColumnName("recipe_id");
@@ -139,7 +138,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
                 entity.Property(e => e.IngredientId).HasColumnName("ingredient_id");
 
                 entity.Property(e => e.IngredientName)
-                    .HasMaxLength(255)
+                    .HasMaxLength(50)
                     .HasColumnName("ingredient_name");
             });
 
@@ -155,7 +154,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
                 entity.Property(e => e.PreparationId).HasColumnName("preparation_id");
 
                 entity.Property(e => e.PreparationDescription)
-                    .HasMaxLength(255)
+                    .HasMaxLength(50)
                     .HasColumnName("preparation_description");
 
                 entity.Property(e => e.PreparationEtape).HasColumnName("preparation_etape");
@@ -187,7 +186,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
                 entity.Property(e => e.RecipeCreatedAt).HasColumnName("recipe_created_at");
 
                 entity.Property(e => e.RecipePicture)
-                    .HasMaxLength(255)
+                    .HasMaxLength(50)
                     .HasColumnName("recipe_picture");
 
                 entity.Property(e => e.RecipeStarNote)
@@ -195,7 +194,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
                     .HasColumnName("recipe_star_note");
 
                 entity.Property(e => e.RecipeTitle)
-                    .HasMaxLength(255)
+                    .HasMaxLength(50)
                     .HasColumnName("recipe_title");
 
                 entity.Property(e => e.RecipeUpdatedAt).HasColumnName("recipe_updated_at");
@@ -266,7 +265,7 @@ namespace Api.Evlow_Foodies.Datas.Entities
                 entity.Property(e => e.UnityId).HasColumnName("unity_id");
 
                 entity.Property(e => e.UnityName)
-                    .HasMaxLength(255)
+                    .HasMaxLength(50)
                     .HasColumnName("unity_name");
             });
 
@@ -280,23 +279,23 @@ namespace Api.Evlow_Foodies.Datas.Entities
                 entity.Property(e => e.UserId).HasColumnName("user_id");
 
                 entity.Property(e => e.UserEmail)
-                    .HasMaxLength(255)
+                    .HasMaxLength(50)
                     .HasColumnName("user_email");
 
                 entity.Property(e => e.UserFirstName)
-                    .HasMaxLength(255)
+                    .HasMaxLength(50)
                     .HasColumnName("user_firstName");
 
                 entity.Property(e => e.UserLastName)
-                    .HasMaxLength(255)
+                    .HasMaxLength(50)
                     .HasColumnName("user_lastName");
 
                 entity.Property(e => e.UserPassword)
-                    .HasMaxLength(255)
+                    .HasMaxLength(50)
                     .HasColumnName("user_password");
 
                 entity.Property(e => e.UserPseudo)
-                    .HasMaxLength(255)
+                    .HasMaxLength(50)
                     .HasColumnName("user_pseudo");
             });
 
